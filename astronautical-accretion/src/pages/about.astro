@@ -1,4 +1,8 @@
 ---
+import Navigation from '../components/Navigation.astro';
+
+import '../styles/global.css';
+
 const pageTitle = "About Me";
 
 const identity = {
@@ -13,6 +17,10 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 const happy = true;
 const finished = false;
 const goal = 3;
+
+const skillColor = "crimson";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="ja">
@@ -23,11 +31,20 @@ const goal = 3;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
+		<style define:vars={{skillColor, fontWeight, textCase}}>
+		h1 {
+			color: purple;
+			font-size: 4rem;
+		}
+		.skill {
+			color: var(--skillColor);
+			font-weight:car(--fontWeight);
+			text-transform: var(--textCase);
+		}
+		</style>
 	</head>
 	<body>
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
+        <Navigation />
 		<h1>{pageTitle}</h1>
         <h2>... and my new Astro site!</h2>
         <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
@@ -43,7 +60,7 @@ const goal = 3;
 		</ul>
 		<p>My skills are:</p>
 		<ul>
-		{skills.map((skill) => <li>{skill}</li>)}
+		{skills.map((skill) => <li class="skill">{skill}</li>)}
 		</ul>
 
 		{happy && <p>I am happy to be learning Astro!</p>}
